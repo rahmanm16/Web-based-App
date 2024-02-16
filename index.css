@@ -1,0 +1,155 @@
+/* General Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; /* this is usually 16px by default */
+}
+
+body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px; /* padding for smaller screens */
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+}
+
+.form-container {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+}
+
+.form-toggle {
+    margin-bottom: 20px;
+}
+
+button {
+    background: #32a9e2;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1em;
+    outline: none;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background: #2795d9;
+    transform: translateY(-3px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+button.active {
+    background: #1b7cbc;
+    color: #ffffff;
+}
+
+.form-panel {
+    display: none;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.form-panel.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+
+input:focus {
+    border-color: #32a9e2;
+    outline: none;
+}
+
+input[type=submit].btn {
+    width: 100%;
+    cursor: pointer;
+    background: #32a9e2;
+    border: 1px solid transparent;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+input[type=submit].btn:hover {
+    background: #2795d9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+input[type=submit].btn:active {
+    background: #1b7cbc;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
+
+    .container {
+        padding: 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 80%;
+    }
+
+    h1 {
+        font-size: 1.5rem; /* 24px */
+    }
+
+    .form-container {
+        max-width: none;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
