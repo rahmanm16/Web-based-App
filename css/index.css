@@ -6,10 +6,11 @@
 }
 
 html {
-    font-size: 100%; /* this is usually 16px by default */
+    font-size: 100%;
+    /* this is usually 16px by default */
 }
 
-body {
+.body__container {
     height: 100%;
     font-family: 'Arial', sans-serif;
     background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
@@ -17,7 +18,39 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 15px; /* padding for smaller screens */
+    padding: 15px;
+    /* padding for smaller screens */
+}
+
+.chat-window__body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.chat-window__header {
+    background-color: green;
+    padding: 1rem;
+    height: 4rem;
+    width: 100%;
+}
+
+.chat-window__container {
+    display: flex;
+}
+
+.active-chat__column, .recent-chats__column {
+    flex: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.recent-chats__column {
+    background-color: blue;
+}
+
+.active-chat__column {
+    background-color: red;
 }
 
 h1 {
@@ -34,13 +67,13 @@ h1 {
     max-width: 100%;
 }
 
-.form-container {
+.login-form__container {
     position: relative;
     width: 100%;
     max-width: 280px;
 }
 
-.form-toggle {
+.login-form__toggle {
     margin-bottom: 20px;
 }
 
@@ -86,6 +119,7 @@ button.active {
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -141,7 +175,8 @@ input[type=submit].btn:active {
     }
 
     h1 {
-        font-size: 1.5rem; /* 24px */
+        font-size: 1.5rem;
+        /* 24px */
     }
 
     .form-container {
@@ -153,4 +188,3 @@ input[type=submit].btn:active {
         font-size: 0.9em;
     }
 }
-
