@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/index.css">
-  <script src="js/index.js"></script>
-  <title>Web based messaging client</title>
-</head>
-<body>
-  <div class="body__container">
-    <div class="login-form__container">
-      <div class="login-form__toggle">
-        <button id="toggle-login">Log In</button>
-        <button id="toggle-signup">Sign Up</button>
-      </div>
-      <div id="login-form" class="form-panel active">
-        <h2>Login to Your Account</h2>
-        <form>
-          <input type="text" placeholder="Username" required>
-          <input type="password" placeholder="Password" required>
-          <button type="submit" class="btn">Login</button>
-        </form>
-      </div>
-      <div id="signup-form" class="form-panel">
-        <h2>Create an Account</h2>
-        <form>
-          <input type="text" placeholder="Username" required>
-          <input type="email" placeholder="Email" required>
-          <input type="password" placeholder="Password" required>
-          <button type="submit" class="btn">Sign Up</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/index.css" />
+        <script src="js/index.js"></script>
+        <title>Web based messaging client</title>
+    </head>
+    <body>
+        <!-- Main container for the body content -->
+        <div class="body__container">
+            <!-- Container for the login/signup forms -->
+            <div class="login-form__container">
+                <!-- Toggle buttons for switching between login and signup forms -->
+                <div class="login-form__toggle">
+                    <button id="toggle-login">Log In</button>
+                    <button id="toggle-signup">Sign Up</button>
+                </div>
 
+                <!-- Login form panel (visible by default) -->
+                <div id="login-form" class="form-panel active">
+                    <h2>Login to Your Account</h2>
+                    <!-- Form for logging in -->
+                    <form>
+                        <input type="text" placeholder="Username" required />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            required />
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                </div>
+
+                <!-- Signup form panel (hidden by default) -->
+                <div id="signup-form" class="form-panel">
+                    <h2>Create an Account</h2>
+                    <!-- Form for signing up -->
+                    <form>
+                        <input type="text" placeholder="Username" required />
+                        <input type="email" placeholder="Email" required />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            required />
+                        <button type="submit" class="btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
