@@ -57,7 +57,29 @@ h1 {
     color: #fff;
     margin-bottom: 20px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    
 }
+
+h2 {
+    margin-bottom: 20px;
+}
+
+#about img[src="img/macbook.png"] {
+    padding: 20px 20px;
+    width: 100%;
+    max-width: 1000px;
+    
+}
+
+#about h1 {
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px 30px;
+    text-align: center;
+    font-size: 2em;
+}
+
+
 
 .container {
     background: rgba(255, 255, 255, 0.8);
@@ -70,7 +92,8 @@ h1 {
 .login-form__container {
     position: relative;
     width: 100%;
-    max-width: 280px;
+    max-width: 480px;
+    min-height: 480px;
 }
 
 .login-form__toggle {
@@ -82,7 +105,7 @@ button {
     color: #fff;
     border: none;
     padding: 10px 25px;
-    margin: 0 10px;
+    margin: 20px 10px;
     cursor: pointer;
     border-radius: 20px;
     font-size: 1em;
@@ -128,6 +151,7 @@ button.active {
 
 input {
     width: 100%;
+    height: 45px;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -148,6 +172,7 @@ input[type=submit].btn {
     border: 1px solid transparent;
     transition: background 0.3s, box-shadow 0.3s;
 }
+
 
 input[type=submit].btn:hover {
     background: #2795d9;
@@ -185,6 +210,14 @@ input[type=submit].btn:active {
 
     button {
         padding: 10px 15px;
-        font-size: 0.9em;
+        font-size: 1.5em;
+        margin: 10px 0px; 
+        min-width: 300px;
     }
+
+    .login-form__toggle {
+        margin-bottom: 20px;
+    }
+
+
 }
