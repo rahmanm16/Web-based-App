@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 //Darshan; you must replace the following with your database credentials
 //once replaced, next task is to create test case for this
-$servername = "";
+$servername = "brighton";
 $username = "";
 $password = "";
 $dbname = "";
