@@ -29,7 +29,7 @@ $password = $data['password'];
 
 //Query database - useful to get data fast
 $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-£result = $conn->query($sql);
+$result = $conn->query($sql);
 
 if($result->num_rows > 0) {
     //login success
