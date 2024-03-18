@@ -8,9 +8,9 @@ header('Content-Type: application/json');
 //Darshan; you must replace the following with your database credentials
 //once replaced, next task is to create test case for this
 $servername = "brighton";
-$username = "";
-$password = "";
-$dbname = "";
+$username = "mr988_admin";
+$password = "qwerty@1999";
+$db = "mr988_GPChatApp";
 
 //Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,7 +28,7 @@ $password = $data['password'];
 //Can implement below hashing for either username and/or password
 
 //Query database - useful to get data fast
-$sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$sql = "SELECT * FROM tUsers WHERE username = '$username' AND password = '$password'";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0) {
