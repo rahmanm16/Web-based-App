@@ -2,9 +2,9 @@
 
     // Credentials for the database
     $servername = "brighton";
-    $username = "mr988_admin";
-    $password = "qwerty@1999";
-    $dbname = "mr988_GPChatApp";
+    $username = "ds1140_gpadmin";
+    $password = "Nucger9d";
+    $dbname = "ds1140_grouproject";
 
     // Create connection
     $mysqli = new mysqli($servername, $username, $password, $dbname);
