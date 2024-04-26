@@ -5,20 +5,20 @@ header('Content-Type: application/json');
     returns JSON response indicating whether operation was successful or not
 */
 
-//Darshan; you must replace the following with your database credentials
-//once replaced, next task is to create test case for this
+
 $servername = "brighton";
-$username = "mr988_admin";
-$password = "qwerty@1999";
-$db = "mr988_GPChatApp";
+$username = "ds1140_gpadmin";
+$password = "Nucger9d";
+$dbname = "ds1140_grouproject";
 
 //Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-//Check connection
-if($conn->connect_error) {
-    die(json_encode(['success' => false, 'message' => 'Connection Failed: ' . $conn->connect_error]))
+// Check connection
+if($conn->connect_error){
+    die("Connection Failed: " . $conn->connect_error);
 }
+
 
 //Obtain form data
 $data = json_decode(file_get_contents('php://input'), true);
