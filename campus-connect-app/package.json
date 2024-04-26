@@ -1,0 +1,7 @@
+{
+  "name": "campus-connect-app",
+  "version": "0.0.1",
+  "description": "Chat application for university students",
+  "type": "commonjs",
+  "dependencies": {}
+}

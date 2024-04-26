@@ -41,8 +41,9 @@ html {
     display: flex;
 }
 
-.active-chat__column, .recent-chats__column {
-    flex: 50%;
+.active-chat__column,
+.recent-chats__column {
+    flex: 1;
     padding: 10px;
     box-sizing: border-box;
     height: 100vh;
@@ -54,6 +55,7 @@ html {
 
 .active-chat__column {
     background-color: red;
+    position: relative;
 }
 
 h1 {
@@ -78,6 +80,24 @@ h2 {
     max-width: 1000px;
     
     
+}
+.message-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+}
+
+#message-input {
+    width: 100%;
+}
+
+#message-send {
+    margin: 0;
 }
 
 #about h1 {
