@@ -5,32 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Window</title>
   </head>
-  <body class="chat-window__body">
-    <header class="chat-window__header">Header</header>
-    <main>
-      <div class="chat-window__container">
-        <form id="nickname-form" action="">
-          <input
-            type="text"
-            id="nickname-input"
-            placeholder="Enter nickname"
-            autocomplete="off"
-          />
-          <button>Enter Chat</button>
-        </form>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        <div class="active-chat__column">
-          <h2>Active Chat</h2>
-          <ul id="message-list"></ul>
-          <form id="message-form" action="">
-            <input
-              autocomplete="off"
-              id="message-input"
-              placeholder="Type your message"
-            />
-            <button id="message-send">Send</button>
-          </form>
+    .message-bubble {
+      padding: 0.2rem 3rem;
+      text-align: left;
+      border-radius: 1rem;
+      border: 1px solid black;
+    }
+
+    .message-item {
+      text-decoration: none;
+      list-style-type: none;
+      max-width: fit-content;
+    }
+
+    header {
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      padding-left: 2rem;
+      border-bottom: 1px solid black;
+    }
+
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    #room-title {
+      font-weight: 500;
+    }
+
+    main {
+      max-height: calc(100dvh - 5rem);
+      min-height: calc(100dvh - 6rem);
+      display: flex;
+    }
+
+    main h2 {
+      font-weight: 600;
+    }
+
+    #recent-chat-title {
+      margin-left: 2rem;
+    }
+
+    .active-chat__column {
+      width: fit-content;
+      flex: 4;
+      position: relative;
+      min-height: calc(100dvh - 5rem);
+    }
+
+    #message-form {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      width: rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #message-input {
+      padding: 0.75rem 1.5rem;
+      border: 1px solid lightgray;
+      text-align: center;
+      border-radius: 2.5rem;
+      width: 30rem;
+      text-align: left;
+    }
+
+    #message-send {
+      background-color: white;
+      border: 1px solid lightgray;
+      padding: 0.5rem 1rem;
+      border-radius: 2.5rem;
+      cursor: pointer;
+    }
+
+    #message-send:hover {
+      background-color: rgb(197, 195, 195);
+    }
+
+    .recent-chat__column {
+      width: fit-content;
+      flex: 1;
+      border-right: 1px solid black;
+      position: relative;
+    }
+
+    .create-room-container {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #join-room-form {
+      margin: auto;
+      display: flex;
+      justify-content: left;
+      margin-left: 2rem;
+      gap: 0.5rem;
+    }
+  </style>
+  <body class="bg-red">
+    <header class="chat-window__header">Campus Connect</header>
+    <main>
+      <div class="recent-chat__column">
+        <h2 id="recent-chat-title">Recent Chats</h2>
+        <form id="join-room-form" action="">
+          <input
+            autocomplete="off"
+            id="join-room-input"
+            placeholder="Enter room ID"
+          />
+          <button id="join-room">Join</button>
+        </form>
+        <div class="create-room-container">
+          <button id="create-new-room">Create a new room</button>
         </div>
+      </div>
+      <div class="active-chat__column">
+        <div class="title-container">
+          <h2>Active Chat</h2>
+          <h3 id="room-title">Not in a room</h3>
+        </div>
+        <ul id="message-list"></ul>
+        <form id="message-form" action="">
+          <input
+            autocomplete="off"
+            id="message-input"
+            placeholder="Type your message"
+          />
+          <button id="message-send">Send</button>
+        </form>
       </div>
     </main>
     <script src="/socket.io/socket.io.js"></script>
@@ -49,59 +173,24 @@
       });
 
       socket.on("chat message", (msg) => {
+        addMessageToChat(msg);
+        socket.emit("recieved-message", msg);
+      });
+
+      function addMessageToChat(message) {
         const item = document.createElement("li");
-        item.textContent = msg;
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
-      });
-    </script>
-
-    <!-- 
-
-      
-      const messages = document.querySelector("#message-list");
-      const nicknameForm = document.querySelector("#nickname-form");
-      const nicknameInput = document.querySelector("#nickname-input");
-      let selectedNickname = "";
-
-      nicknameForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (nicknameInput.value) {
-          socket.emit("set nickname", nicknameInput.value);
-          selectedNickname = nicknameInput.value;
-          nicknameInput.value = "";
-        }
-      });
-
-      messageForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (messageInput.value) {
-          socket.emit("chat message", {
-            message: messageInput.value,
-            nickname: selectedNickname,
-          });
-          messageInput.value = "";
-        }
-      });
-
-      socket.on("chat message", (data) => {
-        const item = document.createElement("li");
-        const messageBubble = createMessageBubble(data.message, data.nickname);
+        item.classList.add("message-item");
+        const messageBubble = createMessageBubble(message);
         item.appendChild(messageBubble);
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
-      });
+      }
 
-      socket.on("set nickname", (nickname) => {
-        announceNewUser(nickname);
-      });
-
-      function createMessageBubble(message, nickname) {
+      function createMessageBubble(message) {
         const messageBubble = document.createElement("div");
         const messageSender = document.createElement("h1");
         const messageContents = document.createElement("p");
-
-        messageSender.textContent = nickname;
+        messageBubble.classList.add("message-bubble");
         messageContents.textContent = message;
 
         messageBubble.appendChild(messageSender);
@@ -110,11 +199,56 @@
         return messageBubble;
       }
 
-      function announceNewUser(nickname) {
-        const announcement = document.createElement("h2");
-        announcement.textContent = `${nickname} has joined the chat!`;
-        messages.appendChild(announcement);
+      // Allows the user to click a button and create a new private room
+      const createNewRoom = document.querySelector("#create-new-room");
+
+      createNewRoom.addEventListener("click", function () {
+        socket.emit("create-room");
+        socket.on("room-created", (roomId) => {
+          if (roomId) {
+            console.log("Room was created successfully!");
+            if (
+              confirm(
+                "A new room was successfully created!\n\nWould you like to join your new room?"
+              )
+            ) {
+              socket.emit("join-room", roomId);
+            }
+          } else {
+            console.error("Room failed to create!");
+            // TODO: Display error message to user
+          }
+        });
+      });
+
+      const joinRoomForm = document.querySelector("#join-room-form");
+      const joinRoomInput = document.querySelector("#join-room-input");
+
+      joinRoomForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (joinRoomInput.value) {
+          socket.emit("join-room", joinRoomInput.value);
+          joinRoomInput.value = "";
+        }
+      });
+
+      function isUserInRoom(roomId) {
+        socket.emit("check-user-in-room", { roomid, userId: socket.id });
       }
-    </script> -->
+
+      socket.on("user-in-room-response", (isInRoom) => {
+        if (isInRoom) {
+          console.log("User is in the room!");
+        } else {
+          console.log("User is not in the room");
+        }
+      });
+
+      const roomTitle = document.querySelector("#room-title");
+
+      socket.on("joined-room", (roomId) => {
+        roomTitle.textContent = `Room: ${roomId}`;
+      });
+    </script>
   </body>
 </html>
