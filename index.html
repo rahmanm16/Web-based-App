@@ -21,7 +21,7 @@
                 <div id="login-form" class="form-panel active">
                     <h2>Login to Your Account</h2>
                     <!-- Form for logging in -->
-                    <form>
+                    <form action="login.php" method="post" onsubmit="window.location.href='chat-menu.html'">
                         <input type="text" placeholder="Username" required />
                         <input
                             type="password"
@@ -35,7 +35,7 @@
                 <div id="signup-form" class="form-panel">
                     <h2>Create an Account</h2>
                     <!-- Form for signing up -->
-                    <form>
+                    <form action="signup.php" method="post" onsubmit="window.location.href='chat-menu.html'">
                         <input type="text" placeholder="Username" required />
                         <input type="email" placeholder="Email" required />
                         <input
@@ -43,6 +43,7 @@
                             placeholder="Password"
                             required />
                         <button type="submit" class="btn">Sign Up</button>
+                        <!-- Button should redirect to chat menu html if successful -->
                     </form>
                 </div>
             </div>

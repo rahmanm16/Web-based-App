@@ -14,12 +14,24 @@
     }
 
     .message-bubble {
-      padding: 0.2rem 3rem;
-      text-align: left;
-      border-radius: 1rem;
-      border: 1px solid black;
+      padding: 0.2rem 1rem;
+      border-radius: 10px;
+      margin: 0.5rem;
+      max-width: 60%;
     }
 
+    .message-bubble.self {
+      background-color: #04befe;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .message-bubble.other {
+      background-color: #ebebeb;
+      margin-right: auto;
+      text-align: left;
+    }
+    
     .message-item {
       text-decoration: none;
       list-style-type: none;
@@ -190,6 +202,7 @@
     .created-room-item:hover {
       background-color: lightgray;
     }
+    
   </style>
   <body class="bg-red">
     <header class="chat-window__header"><h1>Campus Connect</h1></header>
@@ -242,37 +255,41 @@
       messageForm.addEventListener("submit", (e) => {
         e.preventDefault();
         if (messageInput.value) {
-          socket.emit("chat message", messageInput.value);
+          socket.emit("chat message", { message: messageInput.value, senderID: socket.id });
           messageInput.value = "";
         }
       });
 
-      socket.on("chat message", (msg) => {
-        addMessageToChat(msg);
-        socket.emit("recieved-message", msg);
+      socket.on("chat message", (data) => {
+        // Data now includes sender and message
+        addMessageToChat(data.message, data.senderID);
       });
-
-      function addMessageToChat(message) {
+      
+      function addMessageToChat(message, senderID) {
         const item = document.createElement("li");
         item.classList.add("message-item");
-        const messageBubble = createMessageBubble(message);
+
+        const isSelf = senderID === socket.id; // Check whether the sender is the current user
+        const messageBubble = createMessageBubble(message, isSelf);
         item.appendChild(messageBubble);
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       }
 
-      function createMessageBubble(message) {
+      function createMessageBubble(message, isSelf) {
         const messageBubble = document.createElement("div");
-        const messageSender = document.createElement("h1");
-        const messageContents = document.createElement("p");
         messageBubble.classList.add("message-bubble");
+        if (isSelf) {
+          messageBubble.classList.add("self");
+        } else {
+          messageBubble.classList.add("other");
+        }
+        const messageContents = document.createElement("p");
         messageContents.textContent = message;
-
-        messageBubble.appendChild(messageSender);
         messageBubble.appendChild(messageContents);
-
         return messageBubble;
       }
+
 
       // Allows the user to click a button and create a new private room
       const createNewRoom = document.querySelector("#create-new-room");
