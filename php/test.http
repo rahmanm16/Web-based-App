@@ -1,0 +1,16 @@
+
+GET https://mr988.brighton.domains/CI536/signup.php?id=1
+Accept: application/json
+
+
+POST https://mr988.brighton.domains/CI536/signup.php
+Content-Type: application/json
+
+{
+    "id": "2",
+    "username": "jSmith2",
+    "email": "eg101@uni.brighton.ac.uk",
+    "password": "password"
+}
+
+    

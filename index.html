@@ -1,58 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/index.css" />
-        <title>Web based messaging client</title>
-    </head>
-    <body>
-        <!-- Main container for the body content -->
-        <div class="body__container">
-            <!-- Container for the login/signup forms -->
-            <div class="login-form__container">
-                <!-- Toggle buttons for switching between login and signup forms -->
-                <div class="login-form__toggle">
-                    <button id="toggle-login">Log In</button>
-                    <button id="toggle-signup">Sign Up</button>
-                </div>
 
-                <!-- Login form panel (visible by default) -->
-                <div id="login-form" class="form-panel active">
-                    <h2>Login to Your Account</h2>
-                    <!-- Form for logging in -->
-                    <form action="login.php" method="post" onsubmit="window.location.href='chat-menu.html'">
-                        <input type="text" placeholder="Username" required />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            required />
-                        <button type="submit" class="btn">Login</button>
-                    </form>
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Web based messaging client</title>
+</head>
 
-                <!-- Signup form panel (hidden by default) -->
-                <div id="signup-form" class="form-panel">
-                    <h2>Create an Account</h2>
-                    <!-- Form for signing up -->
-                    <form action="signup.php" method="post" onsubmit="window.location.href='chat-menu.html'">
-                        <input type="text" placeholder="Username" required />
-                        <input type="email" placeholder="Email" required />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            required />
-                        <button type="submit" class="btn">Sign Up</button>
-                        <!-- Button should redirect to chat menu html if successful -->
-                    </form>
-                </div>
-            </div>
+<body>
+    <!-- Main container for the body content -->
+    <div class="body__container">
+        <!-- Container for the login/signup forms -->
+        <div class="login-form__container">
+            <h2> Start Chatting! </h2>
+            <form id="username-form">
+                <input type="text" id="username" placeholder="Enter your username" required />
+                <button type="submit">Join Chat</button>
+            </form>
         </div>
+    </div>
     <!--About page-->
-    <div id = "about">
-        <h1> EDUCHAT IS THE FUTURE OF CHAT</h1>
-        <img src = "img/macbook.png" alt="picture of EduChat on laptop">
+    <div id="about">
+        <h1> Campus Connect </h1>
+        <img src="img/macbook.png" alt="picture of EduChat on laptop">
     </div>
     <script src="js/index.js"></script>
-    </body>
+</body>
+
 </html>

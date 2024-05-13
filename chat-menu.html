@@ -1,372 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Window</title>
-  </head>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-    body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
 
-    .message-bubble {
-      padding: 0.2rem 1rem;
-      border-radius: 10px;
-      margin: 0.5rem;
-      max-width: 60%;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Window</title>
+</head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-    .message-bubble.self {
-      background-color: #04befe;
-      margin-left: auto;
-      text-align: right;
-    }
+  body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 
-    .message-bubble.other {
-      background-color: #ebebeb;
-      margin-right: auto;
-      text-align: left;
-    }
-    
-    .message-item {
-      text-decoration: none;
-      list-style-type: none;
-      max-width: fit-content;
-    }
+  .message-bubble {
+    padding: 0.2rem 1rem;
+    border-radius: 10px;
+    margin: 0.5rem;
+    max-width: 60%;
+  }
 
-    header {
-      height: 4rem;
-      display: flex;
-      align-items: center;
-      padding-left: 2rem;
-      border-bottom: 1px solid lightgray;
-    }
+  .message-bubble.self {
+    background-color: #04befe;
+    margin-left: auto;
+    text-align: right;
+  }
 
-    header h1 {
-      font-weight: 500;
-    }
+  .message-bubble.other {
+    background-color: #ebebeb;
+    margin-right: auto;
+    text-align: left;
+  }
 
-    .title-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-    }
+  .message-item {
+    text-decoration: none;
+    list-style-type: none;
+    max-width: fit-content;
+  }
 
-    #room-title {
-      font-weight: 500;
-    }
+  header {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    border-bottom: 1px solid lightgray;
+  }
 
-    main {
-      max-height: calc(100dvh - 5rem);
-      min-height: calc(100dvh - 6rem);
-      display: flex;
-    }
+  header h1 {
+    font-weight: 500;
+  }
 
-    main h2 {
-      font-weight: 600;
-    }
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
 
-    #recent-chat-title {
-      margin-left: 2rem;
-    }
+  #room-title {
+    font-weight: 500;
+  }
 
-    .active-chat__column {
-      width: fit-content;
-      flex: 4;
-      position: relative;
-      min-height: calc(100dvh - 5rem);
-    }
+  main {
+    max-height: calc(100dvh - 5rem);
+    min-height: calc(100dvh - 6rem);
+    display: flex;
+  }
 
-    #message-form {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      margin: 0;
-      display: flex;
-      gap: 1rem;
-      width: rem;
-      justify-content: center;
-      align-items: center;
-    }
+  main h2 {
+    font-weight: 600;
+  }
 
-    .bn632-hover {
-      width: 160px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      margin: 20px;
-      height: 50px;
-      text-align: center;
-      border: none;
-      background-size: 300% 100%;
-      border-radius: 50px;
-      moz-transition: all 0.4s ease-in-out;
-      -o-transition: all 0.4s ease-in-out;
-      -webkit-transition: all 0.4s ease-in-out;
-      transition: all 0.4s ease-in-out;
-    }
+  #recent-chat-title {
+    margin-left: 2rem;
+  }
 
-    .bn632-hover:hover {
-      background-position: 100% 0;
-      moz-transition: all 0.4s ease-in-out;
-      -o-transition: all 0.4s ease-in-out;
-      -webkit-transition: all 0.4s ease-in-out;
-      transition: all 0.4s ease-in-out;
-    }
+  .active-chat__column {
+    width: fit-content;
+    flex: 4;
+    position: relative;
+    min-height: calc(100dvh - 5rem);
+  }
 
-    .bn632-hover:focus {
-      outline: none;
-    }
+  #message-form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+    width: rem;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .bn632-hover.bn26 {
-      background-image: linear-gradient(
-        to right,
+  .bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 50px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .bn632-hover:focus {
+    outline: none;
+  }
+
+  .bn632-hover.bn26 {
+    background-image: linear-gradient(to right,
         #25aae1,
         #4481eb,
         #04befe,
-        #3f86ed
-      );
-      box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-    }
+        #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+  }
 
-    #message-input {
-      padding: 0.75rem 1.5rem;
-      border: 1px solid lightgray;
-      text-align: center;
-      border-radius: 2.5rem;
-      width: 30rem;
-      height: 1.5rem;
-      text-align: left;
-    }
+  #message-input {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid lightgray;
+    text-align: center;
+    border-radius: 2.5rem;
+    width: 30rem;
+    height: 1.5rem;
+    text-align: left;
+  }
 
-    #message-send {
-      background-color: white;
-      border: 1px solid lightgray;
-      padding: 0.5rem 1rem;
-      border-radius: 2.5rem;
-      cursor: pointer;
-    }
+  #message-send {
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 0.5rem 1rem;
+    border-radius: 2.5rem;
+    cursor: pointer;
+  }
 
-    #message-send:hover {
-      background-color: rgb(197, 195, 195);
-    }
+  #message-send:hover {
+    background-color: rgb(197, 195, 195);
+  }
 
-    .recent-chat__column {
-      width: fit-content;
-      flex: 1;
-      border-right: 1px solid lightgray;
-      position: relative;
-    }
+  .recent-chat__column {
+    width: fit-content;
+    flex: 1;
+    border-right: 1px solid lightgray;
+    position: relative;
+  }
 
-    .create-room-container {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  .create-room-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    #join-room-form {
-      margin: auto;
-      display: flex;
-      justify-content: left;
-      margin-left: 2rem;
-      gap: 0.5rem;
-    }
+  #join-room-form {
+    margin: auto;
+    display: flex;
+    justify-content: left;
+    margin-left: 2rem;
+    gap: 0.5rem;
+  }
 
-    .created-rooms-container {
-      width: 100%;  
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-    }
+  .created-rooms-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
 
-    .created-room-item {
-      cursor: pointer;
-      list-style-type: none;
-      width: 100%;
-      border-bottom: 1px solid lightgray;
-      padding: 0.75rem 0rem;
-    }
+  .created-room-item {
+    cursor: pointer;
+    list-style-type: none;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    padding: 0.75rem 0rem;
+  }
 
-    .created-room-item:hover {
-      background-color: lightgray;
-    }
-    
-  </style>
-  <body class="bg-red">
-    <header class="chat-window__header"><h1>Campus Connect</h1></header>
-    <main>
-      <div class="recent-chat__column">
-        <h2 id="recent-chat-title">Recent Chats</h2>
-        <form id="join-room-form" action="">
-          <input
-            autocomplete="off"
-            id="join-room-input"
-            placeholder="Enter room ID"
-          />
-          <button id="join-room">Join</button>
-        </form>
-        <div class="created-rooms-container">
-          <ul id="created-rooms-list">
-          </ul>
-        </div>
-        <div class="create-room-container">
-          <button id="create-new-room" class="bn632-hover bn26">
-            Create room
-          </button>
-        </div>
+  .created-room-item:hover {
+    background-color: lightgray;
+  }
+</style>
+
+<body class="bg-red">
+  <header class="chat-window__header">
+    <h1>Campus Connect</h1>
+  </header>
+  <main>
+    <div class="recent-chat__column">
+      <h2 id="recent-chat-title">Recent Chats</h2>
+      <form id="join-room-form" action="">
+        <input autocomplete="off" id="join-room-input" placeholder="Enter room ID" />
+        <button id="join-room">Join</button>
+      </form>
+      <div class="created-rooms-container">
+        <ul id="created-rooms-list">
+        </ul>
       </div>
-      <div class="active-chat__column">
-        <div class="title-container">
-          <h2>Active Chat</h2>
-          <h3 id="room-title">Not in a room</h3>
-        </div>
-        <ul id="message-list"></ul>
-        <form id="message-form" action="">
-          <input
-            autocomplete="off"
-            id="message-input"
-            placeholder="Type your message"
-          />
-          <button id="message-send" class="">Send</button>
-        </form>
+      <div class="create-room-container">
+        <button id="create-new-room" class="bn632-hover bn26">
+          Create room
+        </button>
       </div>
-    </main>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      // TODO: Fix it so that when a user changes room it updates their room ID.
+    </div>
+    <div class="active-chat__column">
+      <div class="title-container">
+        <h2>Active Chat</h2>
+        <h3 id="room-title">Not in a room</h3>
+      </div>
+      <ul id="message-list"></ul>
+      <form id="message-form" action="">
+        <input autocomplete="off" id="message-input" placeholder="Type your message" />
+        <button id="message-send" class="">Send</button>
+      </form>
+    </div>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // TODO: Fix it so that when a user changes room it updates their room ID.
 
-      const socket = io();
-      const messageForm = document.querySelector("#message-form");
-      const messageInput = document.querySelector("#message-input");
-      const messages = document.querySelector("#message-list");
+    const socket = io();
+    const messageForm = document.querySelector("#message-form");
+    const messageInput = document.querySelector("#message-input");
+    const messages = document.querySelector("#message-list");
 
-      messageForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (messageInput.value) {
-          socket.emit("chat message", { message: messageInput.value, senderID: socket.id });
-          messageInput.value = "";
-        }
-      });
-
-      socket.on("chat message", (data) => {
-        // Data now includes sender and message
-        addMessageToChat(data.message, data.senderID);
-      });
-      
-      function addMessageToChat(message, senderID) {
-        const item = document.createElement("li");
-        item.classList.add("message-item");
-
-        const isSelf = senderID === socket.id; // Check whether the sender is the current user
-        const messageBubble = createMessageBubble(message, isSelf);
-        item.appendChild(messageBubble);
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
+    messageForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (messageInput.value) {
+        socket.emit("chat message", { message: messageInput.value, senderID: socket.id });
+        messageInput.value = "";
       }
+    });
 
-      function createMessageBubble(message, isSelf) {
-        const messageBubble = document.createElement("div");
-        messageBubble.classList.add("message-bubble");
-        if (isSelf) {
-          messageBubble.classList.add("self");
-        } else {
-          messageBubble.classList.add("other");
-        }
-        const messageContents = document.createElement("p");
-        messageContents.textContent = message;
-        messageBubble.appendChild(messageContents);
-        return messageBubble;
+    socket.on("chat message", (data) => {
+      // Data now includes sender and message
+      addMessageToChat(data.message, data.senderID);
+    });
+
+    function addMessageToChat(message, senderID) {
+      const item = document.createElement("li");
+      item.classList.add("message-item");
+
+      const isSelf = senderID === socket.id; // Check whether the sender is the current user
+      const messageBubble = createMessageBubble(message, isSelf);
+      item.appendChild(messageBubble);
+      messages.appendChild(item);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function createMessageBubble(message, isSelf) {
+      const messageBubble = document.createElement("div");
+      messageBubble.classList.add("message-bubble");
+      if (isSelf) {
+        messageBubble.classList.add("self");
+      } else {
+        messageBubble.classList.add("other");
       }
+      const messageContents = document.createElement("p");
+      messageContents.textContent = message;
+      messageBubble.appendChild(messageContents);
+      return messageBubble;
+    }
 
 
-      // Allows the user to click a button and create a new private room
-      const createNewRoom = document.querySelector("#create-new-room");
+    // Allows the user to click a button and create a new private room
+    const createNewRoom = document.querySelector("#create-new-room");
 
-      createNewRoom.addEventListener("click", function () {
-        socket.emit("create-room");
-        socket.on("room-created", (roomId) => {
-          if (roomId) {
-            console.log("Room was created successfully!");
-            if (
-              confirm(
-                "A new room was successfully created!\n\nWould you like to join your new room?"
-              )
-            ) {
-              socket.emit("join-room", roomId);
-            }
-          } else {
-            console.error("Room failed to create!");
-            // TODO: Display error message to user
+    createNewRoom.addEventListener("click", function () {
+      socket.emit("create-room");
+      socket.on("room-created", (roomId) => {
+        if (roomId) {
+          console.log("Room was created successfully!");
+          if (
+            confirm(
+              "A new room was successfully created!\n\nWould you like to join your new room?"
+            )
+          ) {
+            socket.emit("join-room", roomId);
           }
-        });
-      });
-
-      const joinRoomForm = document.querySelector("#join-room-form");
-      const joinRoomInput = document.querySelector("#join-room-input");
-
-      joinRoomForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (joinRoomInput.value) {
-          socket.emit("join-room", joinRoomInput.value);
-          joinRoomInput.value = "";
-        }
-      });
-
-      function isUserInRoom(roomId) {
-        socket.emit("check-user-in-room", { roomid, userId: socket.id });
-      }
-
-      socket.on("user-in-room-response", (isInRoom) => {
-        if (isInRoom) {
-          console.log("User is in the room!");
         } else {
-          console.log("User is not in the room");
+          console.error("Room failed to create!");
+          // TODO: Display error message to user
         }
       });
+    });
 
-      const roomTitle = document.querySelector("#room-title");
+    const joinRoomForm = document.querySelector("#join-room-form");
+    const joinRoomInput = document.querySelector("#join-room-input");
 
-      socket.on("joined-room", (roomId) => {
-        roomTitle.textContent = `Room ID: ${roomId}`;
-        announceNewUser(socket.id);
+    joinRoomForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (joinRoomInput.value) {
+        socket.emit("join-room", joinRoomInput.value);
+        joinRoomInput.value = "";
+      }
+    });
 
-        if (!createdRooms.includes(roomId)) {
-          createdRooms.push(roomId);
-          addCreatedRoomToList(roomId);
-        }
+    function isUserInRoom(roomId) {
+      socket.emit("check-user-in-room", { roomid, userId: socket.id });
+    }
+
+    socket.on("user-in-room-response", (isInRoom) => {
+      if (isInRoom) {
+        console.log("User is in the room!");
+      } else {
+        console.log("User is not in the room");
+      }
+    });
+
+    const roomTitle = document.querySelector("#room-title");
+
+    socket.on("joined-room", (roomId) => {
+      roomTitle.textContent = `Room ID: ${roomId}`;
+      announceNewUser(socket.id);
+
+      if (!createdRooms.includes(roomId)) {
+        createdRooms.push(roomId);
+        addCreatedRoomToList(roomId);
+      }
+    });
+
+    function announceNewUser(user) {
+      const newUser = document.createElement("h4");
+      newUser.textContent = `${user} has joined the chat!`;
+      messages.appendChild(newUser);
+    }
+
+    const createdRooms = [];
+    const createdRoomsList = document.querySelector("#created-rooms-list");
+
+    function addCreatedRoomToList(roomId) {
+      const listItem = document.createElement("li");
+      listItem.classList.add("created-room-item");
+      listItem.textContent = roomId;
+      createdRoomsList.appendChild(listItem);
+
+      listItem.addEventListener("click", () => {
+        socket.emit("join-room", roomId);
       });
+    }
+  </script>
+</body>
 
-      function announceNewUser(user) {
-        const newUser = document.createElement("h4");
-        newUser.textContent = `${user} has joined the chat!`;
-        messages.appendChild(newUser);
-      }
-
-      const createdRooms = [];
-      const createdRoomsList = document.querySelector("#created-rooms-list");
-
-      function addCreatedRoomToList(roomId) {
-        const listItem = document.createElement("li");
-        listItem.classList.add("created-room-item");
-        listItem.textContent = roomId;
-        createdRoomsList.appendChild(listItem);
-
-        listItem.addEventListener("click", () => {
-          socket.emit("join-room", roomId);
-        });
-      }
-    </script>
-  </body>
 </html>
