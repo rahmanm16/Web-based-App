@@ -1,3 +1,5 @@
+// To run the chat page, you need to install express, socket.io, and uuid &
+// must run command in terminal: 'node js/chat-window-index.js'
 const express = require("express");
 const { createServer } = require("node:http");
 const { join } = require("node:path");
