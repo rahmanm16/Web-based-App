@@ -188,6 +188,16 @@ button:hover {
         
     
     }
+
+    #about img[src="img/secure.png"] {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    #about img[src="img/phone.png"] {
+        width: 100%;
+        max-width: 500px;
+    }
 }
 
 
