@@ -19,6 +19,16 @@ body {
     padding: 20px;
 }
 
+#username-form button {
+    margin-top: 1em;
+}
+
+#username-form input {
+    border-radius: 8px;
+    min-height: 3em;
+    padding: 10px;
+}
+
 .login-form__container {
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
