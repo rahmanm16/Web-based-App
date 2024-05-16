@@ -37,6 +37,11 @@ body {
     width: 100%;
 }
 
+#about__title {
+    -webkit-text-stroke-width: 0.05vh;
+    -webkit-text-stroke-color: black;
+}
+
 .chat-window__container {
     display: flex;
 }
